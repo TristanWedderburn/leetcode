@@ -6,8 +6,7 @@ class Solution:
         if not nums:
             return 0
         
-        unique = 0
-        nextUnique = 0
+        unique = nextUnique = 0
         
         while nextUnique < len(nums):
             val = nums[nextUnique]
