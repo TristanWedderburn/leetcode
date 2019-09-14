@@ -13,7 +13,7 @@ class Solution:
                     merged[1] = intervals[i+1][1]
             else:
                 result.append(merged)
-                if i+1 < len(intervals):
+                if i+1 < len(intervals): #implement with a stack of new interval?
                     merged = intervals[i+1]
             
         return result
