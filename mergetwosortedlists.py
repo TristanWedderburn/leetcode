@@ -10,10 +10,10 @@ class Solution:
         
         while(l1 and l2):
             val = 0
-            if(l1.val<l2.val):
+            if(l1.val<=l2.val):
                 val = l1.val
                 l1 = l1.next
-            else: #l2 > l1 or l1 == l2
+            else:
                 val = l2.val
                 l2 = l2.next
             result_tail.next = ListNode(val)
