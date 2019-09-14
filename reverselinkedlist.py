@@ -23,14 +23,26 @@ class Solution:
 #         result.next.next = rest
 #         self.reverseList_(store, result)
 
-# optimized solution with better recursive solution
+# better recursive solution
 
+#     def reverseList(self, head: ListNode) -> ListNode:
+#         if not head or not head.next:
+#             return head
+        
+#         p = self.reverseList(head.next) # stack level recurses all the way to the end and then returns last element along the way
+#         head.next.next = head #next element's.next points to head so that head actually follows head.next
+#         head.next = None #last element (head) will point to None
+#         return p #return last element as new head
+        
+# iterative solution
     def reverseList(self, head: ListNode) -> ListNode:
-        if not head or not head.next:
-            return head
+        prev = None
+        curr = head
         
-        p = self.reverseList(head.next) # stack level recurses all the way to the end and then returns last element along the way
-        head.next.next = head #next element's.next points to head so that head actually follows head.next
-        head.next = None #last element (head) will point to None
-        return p #return last element as new head
-        
+        while(curr):
+            nextNode = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nextNode
+            
+        return prev
