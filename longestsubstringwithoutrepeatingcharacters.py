@@ -21,3 +21,4 @@ class Solution:
                 bank[ord(s[left])]=0 #remove leftmost char from bank
                 left+=1 #retry without leftmost char
         return maxSubstring
+# can optimize by storing last location in a map to skip left variable to the last known index+1
