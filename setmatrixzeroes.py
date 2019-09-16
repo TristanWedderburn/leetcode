@@ -29,3 +29,5 @@ class Solution:
             if col[a] == 1:
                 for b in range(n):
                     matrix[b][a] = 0
+                    
+# more efficient implementation to use the first row and col of the matrix as the lookup arrays and an extra variable for [0][0]
