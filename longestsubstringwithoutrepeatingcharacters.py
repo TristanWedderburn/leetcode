@@ -32,8 +32,7 @@ class Solution:
         maxSubstring=0
 
         for right in range(len(s)): #update max incrementally
-            val = s[right]
-            index = ord(val)
+            index = ord(s[right])
             left = max(bank[index], left)
             maxSubstring = max(maxSubstring, right - left + 1);
             bank[index] = right + 1; #store index of variable as we encounter it
