@@ -1,14 +1,16 @@
 class Solution:
     def plusOne(self, digits: List[int]) -> List[int]:
         if not digits:
-          return []
+            return None
         
+        carry = 0
         val = digits[-1]
         val+=1
         digits[-1] = val
         
         if val == 10: #if we need to add a carry, pass it down into the array
             carry = val // 10
+            digits[-1] = val %10
             for i in range(1, len(digits)): #traverse array from the back
                 newVal = digits[len(digits)-i-1]
                 newVal+=carry
