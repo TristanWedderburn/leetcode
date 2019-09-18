@@ -13,7 +13,7 @@ class Solution:
                 return mid
             elif val > target:
                 right = mid-1
-            elif val < target:
+            else:
                 left = mid+1
                     
         return -1
