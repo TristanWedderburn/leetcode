@@ -6,13 +6,13 @@ class Solution:
         left = 0
         right = len(nums)
         
-        while(left < right):
+        while(left <= right):
             mid = left + (right-left)//2
             val = nums[mid]
             if val == target:
                 return mid
             elif val > target:
-                right = mid
+                right = mid-1
             elif val < target:
                 left = mid+1
                     
