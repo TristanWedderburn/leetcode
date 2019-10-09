@@ -1,32 +1,21 @@
-class Solution:
-    def intersect(self, nums1: List[int], nums2: List[int]) -> List[int]:
-# find bigger list
-# store count in hash table
-# decrement count and append to array when encountered
-        if not nums1 or not nums2:
-            return []
+class Solution(object):
+    def intersect(self, nums1, nums2):
+        """
+        :type nums1: List[int]
+        :type nums2: List[int]
+        :rtype: List[int]
+        """
 
-        counter = {}
-        intersection = []
+#       bigger or smaller list doesn' t matter because we are looking for the min of occurrences in both lists
+        counts = {}
+        res = []
 
-        if len(nums1) >= len(nums2):
-            bigger = nums1
-            smaller = nums2
-        else:
-            bigger = nums2
-            smaller = nums1
+        for num in nums1:
+            counts[num] = counts.get(num, 0) + 1 #we can use hash table.get to handle error checking if not in hash table during reference
 
-        for big in bigger:
-            if big in counter:
-                counter[big]+=1
-            else:
-                counter[big]=1
+        for num in nums2:
+            if num in counts and counts[num] > 0: #count has to be above 0 to make sure count is min of occurrences in each list
+                res.append(num)
+                counts[num] -= 1
 
-        for small in smaller:
-            if small in counter:
-                counter[small]-=1
-                if counter[small] == 0:
-                    del counter[small]
-                intersection.append(small)
-
-        return intersection
+        return res
