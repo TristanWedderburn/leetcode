@@ -1,14 +1,18 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        seen = set() # set of previous n values to verify if we are in a cycle
-        
-        while n!=1:
-# sum digits of n 
-            n = sum(int(digit) ** 2 for digit in str(n))
+        seen = set()
+        while(n!=1):
             if n in seen:
                 return False
             else:
-                seen.add(n) 
+                seen.add(n)
+            n = self.sumDigitSquares(n)
         return True
     
-    
+    def sumDigitSquares(self,n):
+        sum = 0
+        while(n!=0):
+            digit =(n%10)**2
+            sum+=digit
+            n = n//10
+        return sum
