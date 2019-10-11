@@ -8,6 +8,9 @@ class Solution(object):
         """
         n = len(board)
         
+#         using hash table with lists for each row, column and box
+#          if n is the rows/columns in the board, O(n) space
+#           if n is the number of elements, O(n) as it must run through each index to verify the number
         lookup = defaultdict(list)
         
         for i in range(n):
