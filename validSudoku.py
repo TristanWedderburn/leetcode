@@ -33,8 +33,6 @@ class Solution(object):
                         return False
                     else:
                         lookup['b'+str(3*(j//3)+k//3)].append(val)
-                        
-        
         return True
         
         
