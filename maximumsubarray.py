@@ -1,35 +1,46 @@
-class Solution:
-#     O(n^2) time
-# 
-#     def maxSubArray(self, nums: List[int]) -> int:
+class Solution(object):
+#     recursive solution O(n) time and space
+#     def maxSubArray(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: int
+#         """
 #         if not nums:
 #             return 0
-#         if len(nums) == 1:
-#             return nums[0]
-       
-#         maxVal = nums[0]
-        
-#         for i in range(len(nums)):
-#             dist = len(nums)-i
-#             val = 0
-#             for j in range(dist):
-#                 val += nums[i+j]
-#                 if val > maxVal:
-#                     maxVal = val
-                    
-#         return maxVal
+#         return self.sum(nums, 1,nums[0],nums[0])
 
-#     O(n) time
-#     compare whether to add value at new index to subarray or scrap past max and start new max subarray at new index
-# 
-      def maxSubArray(self, nums: List[int]) -> int:
+#     def sum(self, nums, index, prevSum, maxSum):
+#         if index == len(nums):
+#             return prevSum
+#         else:
+#             if nums[index] > prevSum + nums[index]: #drop and start new sum
+#                 currentSum = self.sum(nums, index+1, nums[index], maxSum)
+#             elif index+1 < len(nums): #add val to currentSum
+#                 currentSum = self.sum(nums, index+1, prevSum+nums[index], maxSum)
+#             return max(maxSum, prevSum, currentSum)
+
+# iterative solution --> O(n) time and O(1) space
+    def maxSubArray(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: int
+        """
+        
         if not nums:
             return 0
         
-        curSum = maxSum = nums[0]
-        for i in range(1,len(nums)):
+        currentSum = nums[0]
+        maxSum = nums[0]
+        
+        for i in range(1, len(nums)):
             val = nums[i]
-            curSum = max(val, curSum+val)
-            maxSum = max(maxSum, curSum)
+            
+            # if val > currentSum + val:
+            #     currentSum = val
+            # else:
+            #     currentSum+=val
+            
+            currentSum = max(currentSum+val, val) #can simplify to just max of currentSum + val or val to implement above logic
+            maxSum = max(maxSum, currentSum)
             
         return maxSum
