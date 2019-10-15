@@ -6,24 +6,24 @@ class Solution(object):
         """
         minInt = -(2)**31
         maxInt = (2**31)-1
-#       flag to determine whether we should expect numbers now i.e we have seen a sign or an number already within the string
-        isNumber = False
+        isNumber = False #flag to determine whether we should expect numbers now i.e we have seen a sign or a number already within the string
         atoi = 0
         sign = 1
         i = 0
         
         while(i< len(str)):
-            if not isNumber and str[i] == ' ':
-#               remove whitespace
+            char = str[i]
+            if not isNumber and char == ' ':
                 pass
-            elif not isNumber and str[i] == '-':
+            elif not isNumber and char == '-':
                 sign = -1
                 isNumber = True
-            elif not isNumber and str[i] == '+':
+            elif not isNumber and char == '+':
                 sign = 1
                 isNumber = True
-            elif str[i].isdigit():
-                atoi = atoi*10 + int(str[i])
+            elif char.isdigit():
+                atoi*=10
+                atoi+=int(char)
                 isNumber = True
             else:
                 break
