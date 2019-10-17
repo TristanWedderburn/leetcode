@@ -4,6 +4,7 @@
 #         self.val = x
 #         self.next = None
 
+# O(n) time and O(1) space
 class Solution(object):
     def mergeTwoLists(self, l1, l2):
         """
