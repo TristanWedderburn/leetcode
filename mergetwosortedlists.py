@@ -32,10 +32,7 @@ class Solution(object):
                 l2 = l2.next
             tail = tail.next
         
-        if l2:
-            tail.next = l2
-        elif l1:
-            tail.next = l1
+        tail.next = l2 if not l1 else l1
 
         return head
         
