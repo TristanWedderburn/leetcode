@@ -1,19 +1,14 @@
-class Solution:
-    def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if len(intervals) <=1:
-            return intervals
-    
-        intervals.sort() #sort based on interval start index
-        result = []
-        merged = intervals[0]
-        
-        for i in range(len(intervals)):
-            if i+1 < len(intervals) and intervals[i+1][0]<=merged[1]:
-                if intervals[i+1][1]>merged[1]:
-                    merged[1] = intervals[i+1][1]
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        # for each interval, we either add it because it doesn't overlap or update last interval
+        merged = []
+        for interval in sorted(intervals):
+            if not merged or merged[-1][-1]<interval[0]:
+                merged.append(interval)
             else:
-                result.append(merged)
-                if i+1 < len(intervals): #implement with a stack of new interval?
-                    merged = intervals[i+1]
-            
-        return result
+                merged[-1][-1] = max(merged[-1][-1], interval[-1])
+        return merged
