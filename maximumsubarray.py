@@ -19,6 +19,32 @@ class Solution(object):
 #                 currentSum = self.sum(nums, index+1, prevSum+nums[index], maxSum)
 #             return max(maxSum, prevSum, currentSum)
 
+# class Solution(object):
+#     iterative solution using O(n) time and O(n) space
+#     def maxSubArray(self, nums):
+#         """
+#         :type nums: List[int]
+#         :rtype: int
+#         """
+        
+#         if not nums:
+#             return 0
+        
+#         sums = [nums[0]]+[0 for x in range(1, len(nums))]
+        
+#         for i in range(1, len(nums)):
+#             val = nums[i]
+            
+#             if (val > sums[i-1]+val):
+#                 sums[i] = val
+#                 continue
+            
+#             sums[i]=sums[i-1]+val
+            
+#         return max(sums)
+
+# we can improve upon the above solution because we only need to keep track of the last sum value to determine the next sum
+    
 # iterative solution --> O(n) time and O(1) space
     def maxSubArray(self, nums):
         """
