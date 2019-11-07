@@ -3,12 +3,14 @@ class Solution:
         """
         Do not return anything, modify s in-place instead.
         """
+        #using 2 opposite directions, keep swapping characters
+        
         left = 0
         right = len(s)-1
         
-        while left < right:
+        while (left < right):
             temp = s[left]
             s[left] = s[right]
             s[right] = temp
-            right-=1
             left+=1
+            right-=1
