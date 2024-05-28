@@ -1,20 +1,12 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        # brute force method would be to calculate max profit for each buy day i then return the max value
-        if not prices or len(prices) <= 1:
-            return 0
-        
-        buy = 0
-        sell = 0
-        profit = 0
-        
-        for day, price in enumerate(prices):
-            if price < prices[buy]:
-                buy = day
-                sell = day
-            if price > prices[sell]:
-                sell = day
-                profit = max(profit, prices[sell] - prices[buy])
-            
-        return profit
-                
+        max_profit, buy_index, sell_index = 0, 0, 1
+
+        while(sell_index < len(prices)): # move sell to find best price to sell at
+            if (prices[buy_index] < prices[sell_index]): # if profitable, check
+                max_profit = max(max_profit, prices[sell_index] - prices[buy_index])
+            else: # move the buy index to lower price
+                buy_index = sell_index
+            sell_index+=1 # check next sell date
+
+        return max_profit
