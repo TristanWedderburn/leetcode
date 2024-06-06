@@ -1,48 +1,37 @@
-from collections import deque
-class Solution(object):
+class Solution:
     def __init__(self):
-        self.grid = [[]]
-        
-    def numIslands(self, grid):
-        """
-        :type grid: List[List[str]]
-        :rtype: int
-        """
+        self.num_of_islands = 0
+        self.grid = []
+
+    def numIslands(self, grid: List[List[str]]) -> int:
+        # recursively dfs and turn each part into 0s once we've seen it
+        # increment counter once we see a one
+            
         if not grid:
             return 0
         
         self.grid = grid
-        islands = 0
         
-        n = len(self.grid)
-        m = len(self.grid[0])
-        
-        for i in range(n):
-            for j in range(m):
-                if self.grid[i][j]=='1':
-                    islands+=1 #found new island
-                    self.grid[i][j]='0' #visit
-                    
-                    island = deque()
-                    island.append((i,j))
-                    
-                    #bfs
-                    while island:
-                        next = island.popleft()
-                        ni = next[0]
-                        nj = next[1]
-                        
-                        if ni+1<n and self.grid[ni+1][nj]=='1':
-                            island.append((ni+1,nj))
-                            self.grid[ni+1][nj]='0'
-                        if ni-1>=0 and self.grid[ni-1][nj]=='1':
-                            island.append((ni-1,nj))
-                            self.grid[ni-1][nj]='0'
-                        if nj+1<m and self.grid[ni][nj+1]=='1':
-                            island.append((ni,nj+1))
-                            self.grid[ni][nj+1]='0'
-                        if nj-1>=0 and self.grid[ni][nj-1]=='1':
-                            island.append((ni,nj-1))
-                            self.grid[ni][nj-1]='0'
+        row, col = len(self.grid), len(self.grid[0])
 
-        return islands
+        for r in range(row):
+            for c in range(col):
+                if self.grid[r][c] == "1": # found new island
+                    self.num_of_islands+= 1      
+                    self._dfs(r, c) # iterate to mark all current island
+    
+        return self.num_of_islands
+
+    def _dfs(self, row, col) -> int:
+        # should not iterate more
+        if row < 0 or row == len(self.grid) or col < 0 or col == len(self.grid[0]) or self.grid[row][col] == "0":
+            return
+
+        # mark self as visited
+        self.grid[row][col] = "0"
+
+        # iterate on neighbours
+        self._dfs(row+1, col)
+        self._dfs(row-1, col)
+        self._dfs(row, col+1)
+        self._dfs(row, col-1)
